@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Beatriz Tome — PM & PO</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#fafaf8;--bg2:#f2f0eb;--fg:#1a1a18;--fg2:#5a5a56;--fg3:#9a9a94;
+  --accent:#4f46e5;--accent2:#06b6d4;--accent3:#f59e0b;--accent4:#ec4899;
+  --card:#ffffff;--border:rgba(0,0,0,0.08);
+  --radius:12px;--radius-lg:20px;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',sans-serif;color:var(--fg);overflow-x:hidden;
+  background-color:var(--bg);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size:200px 200px;
+  animation:bgShift 20s linear infinite;
+}
+@keyframes bgShift{0%{background-position:0 0}100%{background-position:200px 200px}}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(14px);background:rgba(250,250,248,0.88);border-bottom:1px solid var(--border);transition:box-shadow 0.3s}
+nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.06)}
+.nav-logo{font-weight:700;font-size:1.1rem;letter-spacing:-0.5px;cursor:pointer;user-select:none}
+.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:1.5rem;align-items:center}
+.nav-links a{text-decoration:none;color:var(--fg2);font-size:0.875rem;font-weight:500;transition:color 0.2s;cursor:pointer}
+.nav-links a:hover{color:var(--fg)}
+.lang-btn{background:var(--fg);color:var(--bg);border:none;padding:0.35rem 0.85rem;border-radius:999px;font-size:0.75rem;font-weight:600;cursor:pointer;transition:all 0.2s;font-family:'Inter',sans-serif;letter-spacing:0.5px}
+.lang-btn:hover{background:var(--accent)}
+
+#hero{min-height:100vh;display:flex;align-items:center;padding:8rem 2rem 4rem;max-width:1100px;margin:0 auto}
+.hero-content{flex:1;max-width:680px}
+h1.hero-title{font-size:clamp(2.8rem,6vw,4.5rem);font-weight:700;line-height:1.05;letter-spacing:-2px;margin-bottom:1.5rem}
+h1.hero-title .highlight{color:var(--accent)}
+h1.hero-title .highlight2{color:var(--accent2)}
+.hero-desc{font-size:1.05rem;color:var(--fg2);line-height:1.75;max-width:560px;margin-bottom:2.5rem}
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-primary{background:var(--fg);color:var(--bg);padding:0.85rem 2rem;border-radius:999px;font-weight:600;font-size:0.9rem;border:none;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.2s}
+.btn-primary:hover{background:var(--accent);transform:translateY(-2px)}
+.btn-outline{background:transparent;color:var(--fg);padding:0.85rem 2rem;border-radius:999px;font-weight:600;font-size:0.9rem;border:1.5px solid var(--border);cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.2s}
+.btn-outline:hover{border-color:var(--fg);transform:translateY(-2px)}
+.hero-stats{display:flex;gap:2.5rem;margin-top:3.5rem;padding-top:2rem;border-top:1px solid var(--border)}
+.stat-num{font-size:1.8rem;font-weight:700;letter-spacing:-1px}
+.stat-label{font-size:0.78rem;color:var(--fg3);margin-top:0.2rem}
+
+section{padding:6rem 2rem;max-width:1100px;margin:0 auto}
+.section-label{font-size:0.75rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem}
+.section-title{font-size:clamp(1.8rem,3vw,2.5rem);font-weight:700;letter-spacing:-1px;margin-bottom:1rem;line-height:1.2}
+.section-sub{font-size:1rem;color:var(--fg2);line-height:1.7;max-width:600px;margin-bottom:3rem}
+
+.sobre-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+.sobre-text{font-size:1rem;color:var(--fg2);line-height:1.85}
+.sobre-text p+p{margin-top:1.2rem}
+.sobre-skills-label{font-size:0.72rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--fg3);margin-top:2rem;margin-bottom:0.75rem}
+.sobre-pills{display:flex;flex-wrap:wrap;gap:0.5rem}
+.pill{background:var(--bg2);border:1px solid var(--border);border-radius:999px;padding:0.4rem 1rem;font-size:0.8rem;font-weight:500;color:var(--fg2)}
+.sobre-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2rem;position:sticky;top:100px}
+.sobre-card-item{display:flex;gap:1rem;align-items:flex-start;padding:1rem 0;border-bottom:1px solid var(--border)}
+.sobre-card-item:last-child{border-bottom:none}
+.sobre-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.sobre-card-item h4{font-size:0.875rem;font-weight:600;margin-bottom:0.2rem}
+.sobre-card-item p{font-size:0.8rem;color:var(--fg3);line-height:1.5}
+
+.timeline{position:relative;padding-left:2rem}
+.timeline::before{content:'';position:absolute;left:0;top:8px;bottom:0;width:2px;background:var(--border)}
+.timeline-item{position:relative;margin-bottom:2.5rem;opacity:0;transform:translateX(-20px);transition:all 0.5s}
+.timeline-item.visible{opacity:1;transform:translateX(0)}
+.timeline-dot{position:absolute;left:-2.5rem;top:6px;width:14px;height:14px;border-radius:50%;background:var(--card);border:2px solid var(--border);transition:all 0.3s}
+.timeline-item:hover .timeline-dot{background:var(--accent);border-color:var(--accent);transform:scale(1.3)}
+.timeline-badge{display:inline-block;background:var(--bg2);border:1px solid var(--border);border-radius:999px;padding:0.2rem 0.75rem;font-size:0.72rem;font-weight:600;color:var(--fg3);margin-bottom:0.5rem}
+.timeline-title{font-size:1.05rem;font-weight:600;margin-bottom:0.2rem}
+.timeline-org{font-size:0.875rem;color:var(--accent);font-weight:500;margin-bottom:0.5rem}
+.timeline-desc{font-size:0.875rem;color:var(--fg2);line-height:1.7}
+.exp-tabs{display:flex;gap:0.5rem;margin-bottom:2.5rem}
+.exp-tab{background:var(--bg2);border:1px solid var(--border);border-radius:999px;padding:0.45rem 1.2rem;font-size:0.82rem;font-weight:500;cursor:pointer;transition:all 0.2s;font-family:'Inter',sans-serif;color:var(--fg2)}
+.exp-tab.active{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+
+.projects-filter{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:2rem}
+.filter-btn{background:var(--bg2);border:1px solid var(--border);border-radius:999px;padding:0.4rem 1rem;font-size:0.8rem;font-weight:500;cursor:pointer;transition:all 0.2s;font-family:'Inter',sans-serif;color:var(--fg2)}
+.filter-btn.active{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem}
+.project-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.5rem;cursor:pointer;transition:transform 0.3s,box-shadow 0.3s;position:relative;overflow:hidden}
+.project-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;opacity:0;transition:opacity 0.3s}
+.project-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.08)}
+.project-card:hover::before{opacity:1}
+.project-card.cat-profissional::before{background:var(--accent)}
+.project-card.cat-academico::before{background:var(--accent2)}
+.project-tag{display:inline-flex;align-items:center;gap:0.3rem;border-radius:999px;padding:0.25rem 0.7rem;font-size:0.7rem;font-weight:600;margin-bottom:0.75rem}
+.tag-prof{background:#eef2ff;color:#4f46e5}
+.tag-acad{background:#ecfeff;color:#0891b2}
+.project-title{font-size:0.95rem;font-weight:600;margin-bottom:0.5rem;line-height:1.4}
+.project-desc{font-size:0.82rem;color:var(--fg2);line-height:1.6;margin-bottom:1rem}
+.project-footer{display:flex;flex-wrap:wrap;gap:0.4rem}
+.project-chip{background:var(--bg2);border-radius:999px;padding:0.2rem 0.6rem;font-size:0.7rem;color:var(--fg3)}
+
+/* ── MODAL ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(10,10,10,0.6);z-index:500;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.25s;pointer-events:none;backdrop-filter:blur(4px)}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal-box{background:var(--card);border-radius:var(--radius-lg);width:min(560px,94vw);max-height:86vh;overflow-y:auto;transform:translateY(24px) scale(0.96);transition:transform 0.28s cubic-bezier(0.34,1.56,0.64,1);position:relative;border:1px solid var(--border)}
+.modal-overlay.open .modal-box{transform:translateY(0) scale(1)}
+.modal-close{position:absolute;top:1rem;right:1rem;z-index:10;background:rgba(255,255,255,0.9);border:1px solid var(--border);width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:0.9rem;display:flex;align-items:center;justify-content:center;color:var(--fg2);transition:all 0.2s;backdrop-filter:blur(4px)}
+.modal-close:hover{background:var(--fg);color:var(--bg)}
+
+/* modal photo area */
+.modal-photo-area{width:100%;background:var(--bg2);position:relative;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0}
+.modal-photo-single{width:100%;height:220px;object-fit:cover;display:block}
+.modal-photo-placeholder{width:100%;height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;color:var(--fg3);font-size:0.8rem}
+.modal-photo-placeholder span{font-size:2rem}
+/* carousel for academic */
+.modal-carousel{position:relative;width:100%;height:220px;overflow:hidden}
+.modal-carousel-track{display:flex;height:100%;transition:transform 0.45s cubic-bezier(0.4,0,0.2,1)}
+.modal-carousel-slide{min-width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--bg2);flex-direction:column;gap:0.5rem;color:var(--fg3);font-size:0.8rem}
+.modal-carousel-slide img{width:100%;height:100%;object-fit:cover}
+.modal-carousel-slide span{font-size:2rem}
+.modal-carousel-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.85);border:1px solid var(--border);width:32px;height:32px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:0.8rem;color:var(--fg);transition:all 0.2s;backdrop-filter:blur(4px);z-index:5}
+.modal-carousel-btn:hover{background:#fff;box-shadow:0 2px 12px rgba(0,0,0,0.12)}
+.modal-carousel-btn.prev{left:0.6rem}
+.modal-carousel-btn.next{right:0.6rem}
+.modal-carousel-dots{position:absolute;bottom:0.6rem;left:50%;transform:translateX(-50%);display:flex;gap:4px}
+.modal-carousel-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,0.5);border:none;cursor:pointer;transition:all 0.2s;padding:0}
+.modal-carousel-dot.active{background:#fff;width:14px;border-radius:3px}
+
+.modal-body{padding:1.75rem 2rem 2rem}
+.modal-cat{display:inline-flex;border-radius:999px;padding:0.25rem 0.75rem;font-size:0.7rem;font-weight:600;margin-bottom:0.85rem}
+.modal-title{font-size:1.25rem;font-weight:700;letter-spacing:-0.5px;margin-bottom:0.3rem;padding-right:2rem}
+.modal-date{font-size:0.8rem;color:var(--fg3);margin-bottom:1.5rem}
+.modal-section{margin-bottom:1.25rem}
+.modal-section h4{font-size:0.7rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--fg3);margin-bottom:0.5rem}
+.modal-section p{font-size:0.875rem;color:var(--fg2);line-height:1.75}
+.modal-chips{display:flex;flex-wrap:wrap;gap:0.4rem}
+.modal-chip{background:var(--bg2);border-radius:999px;padding:0.25rem 0.7rem;font-size:0.75rem;color:var(--fg2)}
+.modal-link{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.85rem;color:var(--accent);font-weight:500;text-decoration:none}
+.modal-link:hover{text-decoration:underline}
+
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.25rem}
+.skill-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.5rem}
+.skill-icon{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:1rem}
+.skill-card h3{font-size:0.95rem;font-weight:600;margin-bottom:0.5rem}
+.skill-card p{font-size:0.82rem;color:var(--fg2);line-height:1.6}
+.skill-tags{display:flex;flex-wrap:wrap;gap:0.35rem;margin-top:0.75rem}
+.skill-tag{background:var(--bg2);border-radius:999px;padding:0.2rem 0.6rem;font-size:0.7rem;color:var(--fg3)}
+
+/* ── CONTATO ── */
+.contato-outer{padding:0 2rem;margin-bottom:4rem}
+.contato-box{
+  background:var(--bg2);border-radius:var(--radius-lg);
+  padding:3rem;max-width:1100px;margin:0 auto;
+  border:1px solid var(--border);overflow:hidden;
+}
+.contato-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+.contato-right{display:flex;flex-direction:column;height:100%}
+.contato-links{display:flex;flex-direction:column;gap:0.85rem;margin-top:1.5rem}
+.contato-link{display:flex;align-items:center;gap:1rem;padding:0.9rem 1.1rem;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);text-decoration:none;color:var(--fg);transition:all 0.2s}
+.contato-link:hover{border-color:var(--accent);transform:translateX(4px)}
+.contato-link-icon{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:0.95rem;flex-shrink:0}
+.contato-link-text span{display:block;font-size:0.68rem;color:var(--fg3)}
+.contato-link-text strong{font-size:0.85rem}
+
+/* ── RECOMENDAÇÕES (contained) ── */
+.recs-col{min-width:0;display:flex;flex-direction:column}
+.recs-col-header h3{font-size:0.95rem;font-weight:600;margin-bottom:0.15rem}
+.recs-col-header p{font-size:0.75rem;color:var(--fg3);margin-bottom:1rem}
+.recs-wrapper{overflow:hidden;width:100%;flex:1;display:flex;flex-direction:column}
+.recs-track{display:flex;width:100%;flex:1;transition:transform 0.55s cubic-bezier(0.4,0,0.2,1)}
+.recs-slide{min-width:100%;width:100%;display:flex;flex-direction:column;gap:0.6rem;flex-shrink:0;flex:1}
+.rec-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem;min-width:0;overflow:hidden;flex:1}
+.rec-quote{font-size:0.75rem;color:var(--fg2);line-height:1.65;margin-bottom:0.75rem;font-style:italic;position:relative;padding-left:1rem;display:-webkit-box;-webkit-line-clamp:4;line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.rec-quote::before{content:'"';position:absolute;left:0;top:-3px;font-size:1.3rem;color:var(--accent);line-height:1;font-style:normal}
+.rec-author{display:flex;align-items:center;gap:0.5rem}
+.rec-avatar{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.6rem;color:#fff;flex-shrink:0}
+.rec-name{font-size:0.72rem;font-weight:600;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rec-role{font-size:0.65rem;color:var(--fg3);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.recs-dots{display:flex;gap:5px;margin-top:0.75rem;justify-content:center}
+.recs-dot{width:5px;height:5px;border-radius:50%;background:var(--border);transition:all 0.3s;cursor:pointer;border:none;padding:0}
+.recs-dot.active{background:var(--accent);width:16px;border-radius:3px}
+
+footer{text-align:center;padding:2rem;font-size:0.8rem;color:var(--fg3);border-top:1px solid var(--border)}
+.fade-up{opacity:0;transform:translateY(30px);transition:opacity 0.6s,transform 0.6s}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+.hidden{display:none !important}
+</style>
+</head>
+<body>
+
+<nav id="mainNav">
+  <div class="nav-logo" onclick="goTop()">BT<span>.</span></div>
+  <div class="nav-links">
+    <a onclick="goTo('sobre')" data-pt="Sobre" data-en="About">Sobre</a>
+    <a onclick="goTo('experiencia')" data-pt="Experiência" data-en="Experience">Experiência</a>
+    <a onclick="goTo('projetos')" data-pt="Projetos" data-en="Projects">Projetos</a>
+    <a onclick="goTo('habilidades')" data-pt="Habilidades" data-en="Skills">Habilidades</a>
+    <a onclick="goTo('contato-section')" data-pt="Contato" data-en="Contact">Contato</a>
+    <button class="lang-btn" onclick="toggleLang()" id="langBtn">EN</button>
+  </div>
+</nav>
+
+<section id="hero">
+  <div class="hero-content">
+    <h1 class="hero-title"><span class="highlight">Beatriz</span><br>Tome<span class="highlight2">.</span></h1>
+    <p class="hero-desc" data-pt="Gerente de Projetos & Product Owner especializada em reduzir fricção em jornadas digitais, acelerar ciclos de entrega e transformar dados em decisões de produto que movem métricas de negócio." data-en="Project Manager & Product Owner specialized in reducing friction in digital journeys, accelerating delivery cycles, and transforming data into product decisions that drive business metrics.">Gerente de Projetos & Product Owner especializada em reduzir fricção em jornadas digitais, acelerar ciclos de entrega e transformar dados em decisões de produto que movem métricas de negócio.</p>
+    <div class="hero-ctas">
+      <button class="btn-primary" onclick="goTo('projetos')" data-pt="Ver projetos →" data-en="View projects →">Ver projetos →</button>
+      <button class="btn-outline" onclick="goTo('contato-section')" data-pt="Entre em contato" data-en="Get in touch">Entre em contato</button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item"><div class="stat-num" style="color:var(--accent)"><span class="counter" data-target="20">0</span><span style="color:var(--fg3);font-size:1rem">+</span></div><div class="stat-label" data-pt="Projetos entregues" data-en="Projects delivered">Projetos entregues</div></div>
+      <div class="stat-item"><div class="stat-num" style="color:var(--accent2)">50M<span style="color:var(--fg3);font-size:1rem">+</span></div><div class="stat-label" data-pt="Usuários impactados" data-en="Users impacted">Usuários impactados</div></div>
+      <div class="stat-item"><div class="stat-num" style="color:var(--accent3)"><span class="counter" data-target="4">0</span><span style="color:var(--fg3);font-size:1rem">+</span></div><div class="stat-label" data-pt="Anos de experiência" data-en="Years of experience">Anos de experiência</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="sobre">
+  <div class="fade-up">
+    <div class="section-label" data-pt="SOBRE MIM" data-en="ABOUT ME">SOBRE MIM</div>
+    <h2 class="section-title" data-pt="Transformo complexidade em clareza e entrega." data-en="I transform complexity into clarity and delivery.">Transformo complexidade em clareza e entrega.</h2>
+  </div>
+  <div class="sobre-grid fade-up">
+    <div>
+      <div class="sobre-text">
+        <p data-pt="Tenho histórico comprovado de liderança de squads ágeis em empresas de tecnologia e marketing digital. Meu foco é resolver problemas reais de escala — reduzindo fricção em jornadas digitais e acelerando ciclos de entrega." data-en="I have a proven track record leading agile squads in tech and digital marketing. My focus is solving real scaling problems — reducing friction in digital journeys and accelerating delivery.">Tenho histórico comprovado de liderança de squads ágeis em empresas de tecnologia e marketing digital. Meu foco é resolver problemas reais de escala — reduzindo fricção em jornadas digitais e acelerando ciclos de entrega.</p>
+        <p data-pt="Especialista em gestão de roadmap orientada por valor e entrega de produtos conversacionais com impacto em milhões de usuários. Acredito que os melhores produtos nascem da interseção entre dados, empatia e execução com qualidade." data-en="Expert in value-driven roadmap management and conversational products impacting millions of users. The best products live at the intersection of data, empathy, and quality execution.">Especialista em gestão de roadmap orientada por valor e entrega de produtos conversacionais com impacto em milhões de usuários. Acredito que os melhores produtos nascem da interseção entre dados, empatia e execução com qualidade.</p>
+      </div>
+      <div class="sobre-skills-label" data-pt="MINHAS SKILLS" data-en="MY SKILLS">MINHAS SKILLS</div>
+      <div class="sobre-pills">
+        <span class="pill">Agile / Scrum</span><span class="pill">Product Discovery</span><span class="pill">OKRs</span><span class="pill">Data-driven</span><span class="pill">Roadmap</span><span class="pill">Squad Leadership</span><span class="pill">UX Research</span><span class="pill">Conversational AI</span>
+      </div>
+    </div>
+    <div class="sobre-card">
+      <div class="sobre-card-item"><div class="sobre-icon" style="background:#eef2ff">🎯</div><div><h4 data-pt="Foco em resultado" data-en="Results-focused">Foco em resultado</h4><p data-pt="Métricas de negócio como norte de todas as decisões." data-en="Business metrics as the north star for all decisions.">Métricas de negócio como norte de todas as decisões.</p></div></div>
+      <div class="sobre-card-item"><div class="sobre-icon" style="background:#ecfeff">⚡</div><div><h4 data-pt="Entrega ágil" data-en="Agile delivery">Entrega ágil</h4><p data-pt="Ciclos curtos, feedback constante e melhoria contínua." data-en="Short cycles, constant feedback, continuous improvement.">Ciclos curtos, feedback constante e melhoria contínua.</p></div></div>
+      <div class="sobre-card-item"><div class="sobre-icon" style="background:#fef3c7">📊</div><div><h4 data-pt="Dados → Decisões" data-en="Data → Decisions">Dados → Decisões</h4><p data-pt="Analiso dados brutos em insights acionáveis." data-en="I analyze raw data into actionable insights.">Analiso dados brutos em insights acionáveis.</p></div></div>
+      <div class="sobre-card-item"><div class="sobre-icon" style="background:#fdf2f8">🤝</div><div><h4 data-pt="Liderança de squads" data-en="Squad leadership">Liderança de squads</h4><p data-pt="Times multidisciplinares alinhados em torno de objetivos claros." data-en="Multidisciplinary teams aligned around clear objectives.">Times multidisciplinares alinhados em torno de objetivos claros.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="experiencia">
+  <div class="fade-up">
+    <div class="section-label" data-pt="TRAJETÓRIA" data-en="TRAJECTORY">TRAJETÓRIA</div>
+    <h2 class="section-title" data-pt="Experiência & Formação" data-en="Experience & Education">Experiência & Formação</h2>
+  </div>
+  <div class="exp-tabs fade-up">
+    <button class="exp-tab active" onclick="showTab('profissional',this)" data-pt="Profissional" data-en="Professional">Profissional</button>
+    <button class="exp-tab" onclick="showTab('academico',this)" data-pt="Acadêmico" data-en="Academic">Acadêmico</button>
+  </div>
+  <div id="tab-profissional" class="timeline">
+    <div class="timeline-item visible"><div class="timeline-dot"></div><div class="timeline-badge" data-pt="Mar 2026 — Presente" data-en="Mar 2026 — Present">Mar 2026 — Presente</div><h3 class="timeline-title" data-pt="Analista Sênior de Canais Digitais" data-en="Senior Digital Channels Analyst">Analista Sênior de Canais Digitais</h3><div class="timeline-org">99 | Didi </div><p class="timeline-desc" data-pt="Liderança estratégica de canais digitais do ecossistema, padronizando processos cross-business e otimizando a performance orientada a dados para mais de 1 milhão de usuários ativos mensais." data-en="Strategic leadership of digital channels across the ecosystem, standardizing cross-business processes and optimizing data-driven performance for over 1 million monthly active users.">Liderança estratégica de canais digitais do ecossistema, padronizando processos cross-business e otimizando a performance orientada a dados para mais de 1 milhão de usuários ativos mensais.</p></div>
+    <div class="timeline-item visible"><div class="timeline-dot"></div><div class="timeline-badge" data-pt="Set 2025 — Mar 2026" data-en="Sep 2025 — Mar 2026">Set 2025 — Mar 2026</div><h3 class="timeline-title">Senior Project Manager</h3><div class="timeline-org">Gupshup</div><p class="timeline-desc" data-pt="Gerenciamento de ciclo completo (end-to-end) de múltiplos projetos simultâneos de agentes conversacionais, liderando cerimônias ágeis, gestão de backlog e integrações de API com entregas de alta performance no prazo." data-en="End-to-end management of multiple simultaneous conversational AI projects, leading agile ceremonies, backlog management, and API integrations with high-performance, on-time delivery.">Gerenciamento de ciclo completo (end-to-end) de múltiplos projetos simultâneos de agentes conversacionais, liderando cerimônias ágeis, gestão de backlog e integrações de API com entregas de alta performance no prazo.</p></div>
+    <div class="timeline-item visible"><div class="timeline-dot"></div><div class="timeline-badge" data-pt="Jul 2023 — Set 2025" data-en="Jul 2023 — Set 2025">Jul 2023 — Set 2025</div><h3 class="timeline-title" data-pt="Senior Project Owner" data-en="Senior Project Owner">Senior Project Owner</h3><div class="timeline-org">Smarters</div><p class="timeline-desc" data-pt="Liderança de roadmap e backlog de produtos estratégicos para grandes empresas, conectando áreas técnicas e de negócios por meio de discovery, frameworks ágeis e gestão orientada a OKRs." data-en="Leadership of strategic product roadmaps and backlogs for enterprise clients, connecting business and technical teams via discovery, agile methodologies, and OKR frameworks.">Liderança de roadmap e backlog de produtos estratégicos para grandes empresas, conectando áreas técnicas e de negócios por meio de discovery, frameworks ágeis e gestão orientada a OKRs.</p></div>
+    <div class="timeline-item visible"><div class="timeline-dot"></div><div class="timeline-badge" data-pt="Mai 2022 — Jun 2023" data-en="May 2022 — Jun 2023">Mai 2022 — Jun 2023</div><h3 class="timeline-title" data-pt="Analista de Produto" data-en="Product Analyst">Analista de Produto</h3><div class="timeline-org">Track&Field</div><p class="timeline-desc" data-pt="Gestão ágil de portfólio de mais de 300 SKUs de alto impacto no faturamento, com atuação de ponta a ponta na cadeia global e conquista de 15% de redução em custos operacionais." data-en="Agile management of a portfolio of over 300 high-impact SKUs for revenue generation, with end-to-end involvement in the global supply chain and achievement of a 15% reduction in operational costs.">Gestão ágil de portfólio de mais de 300 SKUs de alto impacto no faturamento, com atuação de ponta a ponta na cadeia global e conquista de 15% de redução em custos operacionais.</p></div>
+  </div>
+  <div id="tab-academico" class="timeline hidden">
+    <div class="timeline-item visible"><div class="timeline-dot"></div><div class="timeline-badge">2025 — 2022</div><h3 class="timeline-title" data-pt="MBA em Gestão de Projetos PMI e Metodologias Ágeis" data-en="MBA in Project Management and Agile ">MBA em Gestão de Projetos PMI e Metodologias Ágeis</h3><div class="timeline-org" style="color:var(--accent2)">FIAP</div><p class="timeline-desc" data-pt="Gestão de Projetos & Portfólios e liderança ágil." data-en="Project & Portfolio Management and Agile Leadership.">Gestão de Projetos & Portfólios e liderança ágil.</p></div>
+    <div class="timeline-item visible"><div class="timeline-dot"></div><div class="timeline-badge">2022 — 2024</div><h3 class="timeline-title" data-pt="Pós-Graduação em Design Estratégico & Inovação" data-en="Master's in Strategic Design & Innovation">Pós-Graduação em Design Estratégico & Inovação</h3><div class="timeline-org" style="color:var(--accent2)">Instituto Europeo di Design</div><p class="timeline-desc" data-pt="Foco em Design Thinking, pensamento crítico e soluções orientadas ao usuário para gerar valor de negócio." data-en="Focus on Design Thinking, critical thinking, and user-oriented solutions to generate business value.">Foco em Design Thinking, pensamento crítico e soluções orientadas ao usuário para gerar valor de negócio.</p></div>
+    <div class="timeline-item visible"><div class="timeline-dot"></div><div class="timeline-badge">2022</div><h3 class="timeline-title" data-pt="Especialização em Customer Experience" data-en="Specialization in Customer Experience">Especialização em Customer Experience</h3><div class="timeline-org" style="color:var(--accent2)">PUC-SP</div><p class="timeline-desc" data-pt="Foco em otimização de jornadas digitais, retenção e alinhamento de processos sob a ótica do usuário." data-en="Focus on Design Thinking, critical thinking, and user-oriented solutions to generate business value.">Foco em otimização de jornadas digitais, retenção e alinhamento de processos sob a ótica do usuário.</p></div>
+  </div>
+</section>
+
+<section id="projetos">
+  <div class="fade-up">
+    <div class="section-label" data-pt="PORTFÓLIO" data-en="PORTFOLIO">PORTFÓLIO</div>
+    <h2 class="section-title" data-pt="Projetos em destaque" data-en="Featured projects">Projetos em destaque</h2>
+    <p class="section-sub" data-pt="Projetos profissionais e acadêmicos. Clique em qualquer card para ver os detalhes." data-en="Projects professionals and academics. Click any card for details.">Projetos profissionais e acadêmicos. Clique em qualquer card para ver os detalhes.</p>
+  </div>
+  <div class="projects-filter fade-up">
+    <button class="filter-btn active" onclick="filterProjects('all',this)">Todos (20)</button>
+    <button class="filter-btn" onclick="filterProjects('profissional',this)">Profissionais (11)</button>
+    <button class="filter-btn" onclick="filterProjects('academico',this)">Acadêmicos (9)</button>
+  </div>
+  <div class="projects-grid fade-up" id="projectsGrid"></div>
+</section>
+
+<section id="habilidades">
+  <div class="fade-up">
+    <div class="section-label" data-pt="COMPETÊNCIAS" data-en="COMPETENCIES">COMPETÊNCIAS</div>
+    <h2 class="section-title" data-pt="Habilidades & ferramentas" data-en="Skills & tools">Habilidades & ferramentas</h2>
+  </div>
+  <div class="skills-grid fade-up">
+    <div class="skill-card"><div class="skill-icon" style="background:#eef2ff">🗺️</div><h3 data-pt="Gestão de Produto" data-en="Product Management">Gestão de Produto</h3><p data-pt="Roadmap, backlog, discovery, priorização por valor e OKRs." data-en="Roadmap, backlog, discovery, value prioritization and OKRs.">Roadmap, backlog, discovery, priorização por valor e OKRs.</p><div class="skill-tags"><span class="skill-tag">Jira</span><span class="skill-tag">MS Project</span><span class="skill-tag">Monday</span><span class="skill-tag">Asana</span></div></div>
+    <div class="skill-card"><div class="skill-icon" style="background:#ecfeff">⚙️</div><h3 data-pt="Metodologias Ágeis" data-en="Agile Methodologies">Metodologias Ágeis</h3><p data-pt="Scrum, Kanban, SAFe. Cerimônias e liderança de squads." data-en="Scrum, Kanban, SAFe. Ceremonies and squad leadership.">Scrum, Kanban, SAFe. Cerimônias e liderança de squads.</p><div class="skill-tags"><span class="skill-tag">Scrum</span><span class="skill-tag">Kanban</span><span class="skill-tag">SAFe</span><span class="skill-tag">Design Thinking</span></div></div>
+    <div class="skill-card"><div class="skill-icon" style="background:#fef3c7">📈</div><h3 data-pt="Analytics & Dados" data-en="Analytics & Data">Analytics & Dados</h3><p data-pt="Métricas, A/B testing, funis e dashboards." data-en="Metrics, A/B testing, funnels and dashboards.">Métricas, A/B testing, funis e dashboards.</p><div class="skill-tags"><span class="skill-tag">Power BI</span><span class="skill-tag">Google Analytics</span><span class="skill-tag">SQL</span><span class="skill-tag">Python</span></div></div>
+    <div class="skill-card"><div class="skill-icon" style="background:#fdf2f8">🎨</div><h3 data-pt="UX & Design Thinking" data-en="UX & Design Thinking">UX & Design Thinking</h3><p data-pt="Pesquisa com usuários, jornadas e prototipação." data-en="User research, journeys and prototyping.">Pesquisa com usuários, jornadas e prototipação.</p><div class="skill-tags"><span class="skill-tag">Figma</span><span class="skill-tag">Miro</span><span class="skill-tag">Adobe XD</span><span class="skill-tag">User Story</span></div></div>
+    <div class="skill-card"><div class="skill-icon" style="background:#f0fdf4">🤖</div><h3 data-pt="Tecnologia" data-en="Technology">Tecnologia</h3><p data-pt="Agentes conversacionais, NLP, desenvolvimento e integrações." data-en="Conversational agents, NLP, development and integrations.">Agentes conversacionais, NLP, desenvolvimento e integrações.</p><div class="skill-tags"><span class="skill-tag">APIs</span><span class="skill-tag">Javascript</span><span class="skill-tag">LLM</span><span class="skill-tag">HTML</span></div></div>
+    <div class="skill-card"><div class="skill-icon" style="background:#fff7ed">🚀</div><h3 data-pt="Liderança & Comunicação" data-en="Leadership & Communication">Liderança & Comunicação</h3><p data-pt="Gestão de Stakeholders, Storytelling com Dados e Negociação." data-en="Stakeholder Management, Data Storytelling and Negotiation.">Gestão de Stakeholders, Storytelling com Dados e Negociação.</p><div class="skill-tags"><span class="skill-tag">Change Management</span><span class="skill-tag">Agile</span><span class="skill-tag">Team Leadership</span></div></div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<div class="contato-outer" id="contato-section">
+  <div class="contato-box fade-up">
+    <div class="contato-grid">
+      <div>
+        <div class="section-label" data-pt="CONTATO" data-en="CONTACT">CONTATO</div>
+        <h2 class="section-title" style="margin-bottom:0.5rem" data-pt="Vamos conversar?" data-en="Let's talk?">Vamos conversar?</h2>
+        <p style="font-size:0.875rem;color:var(--fg2);line-height:1.7" data-pt="Estou buscando posições de GP ou PO em tech ou marketing digital. Se tiver um desafio interessante, fico feliz em trocar uma ideia!" data-en="Looking for PM or PO roles in tech or digital marketing. If you have an interesting challenge, let's talk!">Estou buscando posições de GP ou PO em tech ou marketing digital. Se tiver um desafio interessante, fico feliz em trocar uma ideia!</p>
+        <div class="contato-links">
+          <a href="mailto:beatriz.corradini@outlook.com" class="contato-link"><div class="contato-link-icon" style="background:#eef2ff">📧</div><div class="contato-link-text"><span data-pt="E-mail" data-en="Email">E-mail</span><strong>beatriz.corradini@outlook.com</strong></div></a>
+          <a href="https://linkedin.com" class="contato-link"><div class="contato-link-icon" style="background:#ecfeff">💼</div><div class="contato-link-text"><span>LinkedIn</span><strong>linkedin.com/in/beatriztome</strong></div></a>
+          <a href="https://wa.me/5511975510205" class="contato-link"><div class="contato-link-icon" style="background:#f0fdf4">💬</div><div class="contato-link-text"><span>WhatsApp</span><strong data-pt="Enviar mensagem" data-en="Send message">Enviar mensagem</strong></div></a>
+        </div>
+      </div>
+      <!-- RECOMENDAÇÕES -->
+      <div class="recs-col contato-right">
+        <div class="recs-col-header">
+          <h3 data-pt="O que dizem sobre mim" data-en="What people say">O que dizem sobre mim</h3>
+          <p data-pt="Recomendações de colegas e líderes" data-en="Recommendations from colleagues and leaders">Recomendações de colegas e líderes</p>
+        </div>
+        <div class="recs-wrapper">
+          <div class="recs-track" id="recsTrack"></div>
+        </div>
+        <div class="recs-dots" id="recsDots"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer><span data-pt="© 2026 Beatriz Tome · Feito com 💜 em São Paulo" data-en="© 2026 Beatriz Tome · Made with 💜 in São Paulo">© 2026 Beatriz Tome · Feito com 💜 em São Paulo</span></footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+  <div class="modal-box" id="modalBox">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<script>
+let lang = 'pt';
+let currentFilter = 'all';
+
+window.addEventListener('scroll', () => {
+  document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 20);
+});
+
+function goTop(){ window.scrollTo({top:0,behavior:'smooth'}); }
+function goTo(id){ document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'}); }
+
+const cObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      const el=e.target, t=+el.dataset.target; let c=0;
+      const iv=setInterval(()=>{ c=Math.min(c+Math.ceil(t/28),t); el.textContent=c; if(c>=t) clearInterval(iv); },45);
+      cObs.unobserve(el);
+    }
+  });
+},{threshold:0.5});
+document.querySelectorAll('.counter').forEach(el=>cObs.observe(el));
+
+const fObs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+},{threshold:0.08});
+document.querySelectorAll('.fade-up').forEach(el=>fObs.observe(el));
+
+function showTab(tab,btn){
+  document.querySelectorAll('.exp-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-profissional').classList.toggle('hidden',tab!=='profissional');
+  document.getElementById('tab-academico').classList.toggle('hidden',tab!=='academico');
+}
+
+/* ── PROJECTS DATA ── */
+const projects = [
+  {cat:'profissional',date:'2024',
+   photos:['prof1.png'],
+   title:{pt:'Canal Digital Oficial do Time Brasil (Paris 2024)',en:'Official Digital Channel for Team Brazil (Paris 2024)'},
+   desc:{pt:'Experiência digital interativa em escala global, engajando milhões de torcedores em tempo real.',en:'Interactive digital experience at global scale, engaging millions of fans in real time.'},
+   sobre:{pt:'Desenvolvimento e gestão de uma experiência digital conversacional interativa para a Meta e o Comitê Olímpico Brasileiro (COB), projetada para centralizar a jornada do torcedor durante os Jogos Olímpicos de Paris 2024. O foco estratégico foi maximizar o user engagement e a retenção da base de usuários em tempo real durante o maior evento esportivo do mundo.',en:'Development and management of an interactive conversational digital experience for Meta and the Brazilian Olympic Committee (COB), designed to centralize the fan journey during the Paris 2024 Olympic Games. The strategic focus was to maximize user engagement and audience retention in real time during the world’s largest sporting event.'},
+   midia:{url:'https://whatsappbusiness.com/pt-br/resources/success-stories/powerade/',label:'Acesse o case na Mídia'},chips:['NLP','Chatbot',' Engagement']},
+  {cat:'profissional',date:'2024',
+   photos:['prof2.jpg'],
+   title:{pt:'Gamificação Conversacional: Campanha BIS Limão na CCXP24',en:'Conversational Gamification: BIS Limão Campaign at CCXP24'},
+   desc:{pt:'Campanha conversacional gamificada via WhatsApp para a Mondelez, unindo storytelling em RPG e geração de leads.',en:'Gamified conversational campaign via WhatsApp for Mondelez, combining RPG storytelling and lead generation.'},
+   sobre:{pt:'Liderança no desenvolvimento de uma jornada de Live Marketing gamificada via WhatsApp para a Mondelez, desenhada para potencializar o lançamento do BIS Limão durante a CCXP24. A estratégia conectou storytelling interativo (RPG em 3 capítulos) a mecânicas de rewards (sorteio de ingressos), impulsionando o engajamento direto com a marca e a geração de leads qualificados em um período de altíssimo tráfego.',en:'Leadership in the development of a gamified Live Marketing journey via WhatsApp for Mondelez, designed to amplify the launch of BIS Limão during CCXP24. The strategy connected interactive storytelling (RPG in 3 chapters) to rewards mechanics (ticket giveaway), boosting direct engagement with the brand and generating qualified leads during a period of extremely high traffic.'},
+   midia:{url:'https://www.meioemensagem.com.br/marketing/bis-cria-jogo-de-rpg-no-whatsapp-como-parte-do-patrocinio-a-ccxp24',label:'Acesse o case na Mídia'},chips:['Gamefication','Product','Engagement']},
+  {cat:'profissional',date:'2025',
+   photos:['prof3.png'],
+   title:{pt:'BBBOT no Big Brother Brasil 25',en:'BBBOT on Big Brother Brazil 25'},
+   desc:{pt:'Experiência conversacional interativa em tempo real para o maior reality show do país, conectando milhões de telespectadores via WhatsApp.',en:'Interactive conversational experience in real time for the country’s largest reality show, connecting millions of viewers via WhatsApp.'},
+   sobre:{pt:'Direcionamento estratégico no desenvolvimento do canal oficial do BBB25 no WhatsApp para a Globo, criando uma experiência conversacional de altíssima escala. O ecossistema entregou dinâmicas interativas integradas ao programa ao vivo, centralizando notícias em tempo real, dados dos participantes e mecânicas exclusivas de engajamento que conectaram a audiência da TV ao ecossistema digital.',en:'Strategic direction in the development of the official BBB25 channel on WhatsApp for Globo, creating a conversational experience of very high scale. The ecosystem delivered interactive dynamics integrated with the live program, centralizing real-time news, participant data and exclusive engagement mechanics that connected the TV audience to the digital ecosystem.'},
+   midia:{url:'https://gshow.globo.com/realities/bbb/bbb-25/noticia/big-brother-brasil-ganha-nova-plataforma-de-relacionamento-com-o-publico.ghtml',label:'Veja o case na Mídia'},chips:['Entertainment','Scale','Chatbot','UX']},
+  {cat:'profissional',date:'2025',
+   photos:['prof4.png'],
+   title:{pt:'Ecossistema Conversacional Familhão',en:'Familhão Conversational Ecosystem'},
+   desc:{pt:'O maior ecossistema conversacional do Brasil, unificando fluxos de vendas via WhatsApp Payments, gamificação e infraestrutura multi-número para alta escala.',en:'The largest conversational ecosystem in Brazil, unifying sales flows via WhatsApp Payments, gamification and multi-number infrastructure for high scale.'},
+   sobre:{pt:'Liderança estratégica na arquitetura e implementação do maior canal de atendimento e vendas via WhatsApp do Brasil para o lançamento do produto "Achou, Levou". A solução unificou cadastro simplificado, fluxos de conversão integrados nativamente ao WhatsApp Payments e uma estrutura robusta de 12 números simultâneos, desenhada para mitigar riscos de infraestrutura e sustentar volumes massivos de transações diárias.',en:'Strategic leadership in the architecture and implementation of the largest WhatsApp service and sales channel in Brazil for the launch of the product "Achou, Levou". The solution unified simplified registration, conversion flows natively integrated with WhatsApp Payments, and a robust structure of 12 simultaneous numbers, designed to mitigate infrastructure risks and sustain massive volumes of daily transactions.'},
+   midia:{url:'https://portalmakingof.com.br/familhao-do-domingao-com-huck-ultrapassa-300-milhoes-de-mensagens-no-whatsapp/',label:'Veja o case na Mídia'},chips:['Marketing Tech','Scalability','Architecture', 'Growth']},
+  {cat:'profissional',date:'2024',
+   photos:['prof5.png'],
+   title:{pt:'Operação Estratégica Meta no Cannes Lions',en:'Meta Strategic Operation at Cannes Lions'},
+   desc:{pt:'Gestão de eventos de alta liderança global em Cannes, integrando IA conversacional B2C para participantes e automação B2E para suporte do staff.',en:'Management of high-profile global events in Cannes, integrating B2C conversational AI for attendees and B2E automation for staff support.'},
+   sobre:{pt:'Orquestração de uma solução conversacional dupla e simultânea para a Meta durante o Cannes Lions 2024, desenhada para elevar a experiência dos participantes e automatizar os processos do staff de campo. O ecossistema unificou a jornada do usuário (agendas, reservas de cinema e distribuição de rewards) à eficiência operacional da equipe de suporte via automação B2E (Business-to-Employee) com relatórios analíticos diários.',en:'Orchestration of a dual and simultaneous conversational solution for Meta during Cannes Lions 2024, designed to elevate the participant experience and automate field staff processes. The ecosystem unified the user journey (agendas, cinema reservations and rewards distribution) with the operational efficiency of the support team via B2E (Business-to-Employee) automation with daily analytical reporting.'},
+   midia:{url:'https://acontecendoaqui.com.br/cannes/cannes-2024/meta-no-cannes-lions-2024-destaca-as-inovacoes-e-quebra-mitos/',label:'Case na Mídia'},chips:['Operations','Logistics','Automation']},
+  {cat:'profissional',date:'2023',
+   photos:['prof6.png'],
+   title:{pt:'Elma Chips: Conversão e Fidelização em Escala',en:'Elma Chips: Conversion and Loyalty at Scale'},
+   desc:{pt:'Campanha nacional de conversão e fidelização para a PepsiCo, integrando captura de dados via WhatsApp e validação física de produtos através de QR Code.',en:'National conversion and loyalty campaign for PepsiCo, integrating data capture via WhatsApp and physical product validation through QR Code.'},
+   sobre:{pt:'Liderança na implementação da infraestrutura conversacional para a campanha nacional de Live Marketing da PepsiCo, desenhada para otimizar o processo de data ingestion e cadastro de consumidores. A estratégia conectou a experiência física do produto (QR Code na embalagem) ao funil digital do WhatsApp, simplificando a validação de cupons e a adesão à mecânica de sorteios regulamentados.',en:'Leadership in the implementation of the conversational infrastructure for PepsiCo’s national Live Marketing campaign, designed to optimize the data ingestion and consumer registration process. The strategy connected the physical product experience (QR Code on the packaging) to the WhatsApp digital funnel, streamlining coupon validation and adherence to regulated sweepstakes mechanics.'},
+   midia:{url:'https://www.facebook.com/business/marketing-partners/case-studies/Smarters_Elma-Chips?_rdc=2&_rdr',label:'Veja o case na Mídia'},chips:['Loyalty','Growth','Retention']},
+  {cat:'profissional',date:'2024',
+   photos:['proj7.png'],
+   title:{pt:'IA e Inclusão: Canal de Acessibilidade no Rock in Rio',en:'AI & Inclusion: Accessibility Channel at Rock in Rio'},
+   desc:{pt:'Solução inclusiva de IA conversacional para o Rock in Rio, utilizando LLM para fornecer suporte em tempo real e acessibilidade ao público PCD.',en:'Inclusive conversational AI solution for Rock in Rio, leveraging LLM to provide real-time support and accessibility for PCD audience.'},
+   sobre:{pt:'Desenvolvimento de um agente conversacional inteligente baseado em Inteligência Artificial Generativa (LLM) para o Rock in Rio, com foco estratégico em acessibilidade e inclusão de grande escala. A solução funcionou como uma base de conhecimento dinâmica e treinada para responder instantaneamente a dúvidas complexas do público PCD, garantindo autonomia, segurança e uma experiência VIP de suporte durante todos os dias do festival.',en:'Development of an intelligent conversational agent based on Generative Artificial Intelligence (LLM) for Rock in Rio, with a strategic focus on accessibility and large-scale inclusion. The solution functioned as a dynamic knowledge base trained to instantly respond to complex questions from the PCD audience, ensuring autonomy, safety, and a VIP support experience throughout all days of the festival.'},
+   midia:{url:'https://www.mobiletime.com.br/noticias/13/09/2024/chatbot-rock-in-rio/',label:'Veja o case na Mídia'},chips:['ESG','LLM','Accessibility']},
+  {cat:'profissional',date:'2024',
+   photos:['prof8.png'],
+   title:{pt:'Personalização de Marca de Bepantol Baby',en:'Brand Personalization for Bepantol Baby'},
+   desc:{pt:'Estratégia de retenção e personalização para a Bayer, utilizando vídeos automatizados e coleta de dados para nutrir o funil de Bepantol Baby.',en:'Retention and personalization strategy for Bayer, leveraging automated videos and data collection to nurture the Bepantol Baby funnel.'},
+   sobre:{pt:'Desenvolvimento de uma estratégia de CRM Conversacional e nutrição de LTV (Lifetime Value) via Instagram para a Bayer, desenhada para estreitar o relacionamento de Bepantol Baby com as famílias ao longo do primeiro ano de vida dos bebês. O ecossistema automatizou a coleta mensal de dados de desenvolvimento (peso/altura) e transformou essas informações em vídeos personalizados de celebração, conectando a experiência emocional a fluxos diretos de conversão e ofertas exclusivas.',en:'Development of a Conversational CRM strategy and LTV (Lifetime Value) nurturing via Instagram for Bayer, designed to strengthen the relationship of Bepantol Baby with families throughout the first year of babies’ lives. The ecosystem automated the monthly collection of development data (weight/height) and transformed this information into personalized celebration videos, connecting the emotional experience to direct conversion flows and exclusive offers.'},
+   midia:{url:'https://www.instagram.com/p/C6ecvhbuOzK/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==',label:'Assista e confira o case'},chips:['CRM','Personalization','Lifecycle']},
+  {cat:'profissional',date:'2025',
+   photos:['proj9.png'],
+   title:{pt:'Big Data e Validação Automatizada: Promoção Ypê',en:'Big Data and Automated Validation: Ypê Promotion'},
+   desc:{pt:'Campanha de alta escala para a Ypê, com triagem automática de notas fiscais e cadastro omnichannel para distribuição de prêmios.',en:'High-scale campaign for Ypê, with automatic invoice screening and omnichannel registration for prize distribution.'},
+   sobre:{pt:'Estruturação da infraestrutura conversacional omnichannel para a campanha nacional de prêmios da Ypê, com foco em otimização do funil de conversão e segurança de dados. O projeto integrou tecnologias de reconhecimento de imagem para triagem e validação automática de notas fiscais diretamente via WhatsApp, eliminando a fricção do cadastro manual e mitigando riscos de fraudes operacionais.',en:'Structuring the omnichannel conversational infrastructure for Ypê’s national prize campaign, with a focus on optimizing the conversion funnel and data security. The project integrated image recognition technologies for automatic screening and validation of invoices directly via WhatsApp, eliminating the friction of manual registration and mitigating operational fraud risks.'},
+   midia:{url:'https://www.ype.ind.br/ype/na-midia/ype-embarca-no-universo-do-magico-de-oz-para-celebrar-seus-75-anos-com-a-maior-promocao-da-sua-historia',label:'Confira o case'},chips:['Automation','Omnichannel','Loyalty']},
+  {cat:'profissional',date:'2025',
+   photos:['prof10.png'],
+   title:{pt:'Instant Rewards e Engajamento de Vendas: Campanha BIS',en:'Instant Rewards and Sales Engagement: BIS Campaign'},
+   desc:{pt:'Campanha de prêmios instantâneos para a Mondelez, integrando embalagens físicas ao WhatsApp para validação imediata de cupons e alta conversão.',en:'Instant win campaign for Mondelez, integrating physical packaging with WhatsApp for immediate coupon validation and high conversion.'},
+   sobre:{pt:'Liderança no desenvolvimento e execução da infraestrutura conversacional para a promoção nacional da Mondelez, desenhada para acelerar o giro de estoque do produto no varejo físico. A solução conectou inteligência de embalagem (QR Code com a dinâmica do BIS Dourado) a um fluxo automatizado de instant rewards no WhatsApp, reduzindo a fricção do cadastro e garantindo validações em tempo real com alta transparência.',en:'Leadership in the development and execution of the conversational infrastructure for Mondelez’s national promotion, designed to accelerate product turnover in physical retail. The solution connected packaging intelligence (QR Code with the BIS Dourado dynamic) to an automated instant rewards flow on WhatsApp, reducing registration friction and ensuring real-time validations with high transparency.'},
+   midia:{url:'https://mundodomarketing.com.br/bis-lanca-promocao-com-premios-em-dobro-e-ate-um-ano-de-chocolate-gratis',label:'Veja o case na Mídia'},chips:['Rewards','Loyalty','Conversion']},
+  {cat:'profissional',date:'2024',
+   photos:['prof11.png'],
+   title:{pt:'Experiência OOH: Lacta Páscoa',en:'OOH Experience: Lacta Easter'},
+   desc:{pt:'Campanha omnichannel integrada para a Mondelez na Páscoa, conectando IA conversacional à mídia OOH com projeções em tempo real na Avenida Paulista.',en:'Omnichannel integrated campaign for Mondelez at Easter, connecting conversational AI to OOH media with real-time projections on Avenida Paulista.'},
+   sobre:{pt:'Direcionamento estratégico na criação de uma jornada interativa de Live Marketing para a Mondelez, desenhada para amplificar o brand awareness da Lacta durante a Páscoa. A solução conectou inteligência conversacional a uma ativação inédita de mídia Out-of-Home, permitindo que conteúdos personalizados criados via WhatsApp fossem exibidos em tempo real em um outdoor na Avenida Paulista.',en:'Strategic direction in the creation of an interactive Live Marketing journey for Mondelez, designed to amplify Lacta’s brand awareness during Easter. The solution connected conversational intelligence to an unprecedented Out-of-Home media activation, allowing personalized content created via WhatsApp to be displayed in real time on a billboard on Avenida Paulista.'},
+   midia:{url:'https://bahiaeconomica.com.br/wp/2024/03/28/lacta-leva-juliette-para-a-avenida-paulista-e-surpreende-consumidores-em-acao-inedita-de-pascoa/',label:'Veja o case'},chips:['Branding','Omnichannel','Marketing']},
+  {cat:'academico',date:'2026',
+   photos:[
+     'acad1.png',
+     'acad2.png',
+     'acad3.png',
+     'acad4.png'
+   ],
+   title:{pt:'Elementar Climatech: Modelagem de Negócios e Seguros Paramétricos',en:'Elementar Climatech: Business Modeling and Parametric Insurance'},
+   desc:{pt:'Startup Climatech disruptiva baseada em seguros paramétricos e inteligência artificial para mitigar e antecipar riscos de desastres climáticos no Brasil.',en:'Disruptive Climatech startup based on parametric insurance and artificial intelligence to mitigate and anticipate climate disaster risks in Brazil.'},
+   sobre:{pt:'Desenvolvimento de um plano de negócios de ponta a ponta e prototipagem de produto para a Elementar, uma insurtech pioneira no mercado brasileiro focada em resiliência climática. O projeto foi estruturado sob rigor acadêmico e metodologias de mercado para preencher um gap multibilionário no setor de seguros, conectando tecnologia e sustentabilidade para proteger vidas e patrimônios.',en:'End-to-end business plan development and product prototyping for Elementar, a pioneering insurtech in the Brazilian market focused on climate resilience. The project was structured under academic rigor and market methodologies to fill a multibillion-dollar gap in the insurance sector, connecting technology and sustainability to protect lives and assets.'},
+   solucao:{pt:'A proposta de valor introduz um modelo de seguros paramétricos preditivos guiados por Inteligência Artificial que elimina o modelo reativo tradicional de sinistros, monitorando variáveis ambientais em tempo real (como chuvas e calor extremo). Através de gatilhos automáticos e infraestrutura digital fluida via aplicativo, o sistema liquida indenizações e dispara assistências 360° instantaneamente quando os limites de risco são atingidos. O projeto consolida-se como um negócio de alto crescimento (SaaS e assinaturas) escalável para o ecossistema B2C e B2B, validado por projeções financeiras, barreiras de dados proprietários e análise de mercado aprofundada.',en:'The value proposition introduces a predictive parametric insurance model guided by Artificial Intelligence that eliminates the traditional reactive claims model, monitoring environmental variables in real-time (such as rainfall and extreme heat). Through automatic triggers and fluid digital infrastructure via an app, the system processes indemnifications and initiates 360° assistance instantly when risk thresholds are reached. The project consolidates as a high-growth business (SaaS and subscriptions) scalable for the B2C and B2B ecosystem, validated by financial projections, proprietary data barriers, and deep market analysis.'},chips:['Insurtech','Strategy','MBA', 'Business']},
+  {cat:'academico',date:'2026',
+   photos:[
+     'acad6.png',
+     'acad7.png',
+     'acad8.png',
+     'acad9.png',
+     'acad10.png'
+   ],
+   title:{pt:'Plugo: Ecossistema de Carregamento Inteligente e Sustentável',en:'Plugo: Intelligent and Sustainable Charging Ecosystem'},
+   desc:{pt:'Ecossistema de carregamento inteligente e sustentável em formato de chaveiro, projetado através de Design Thinking para solucionar a fragmentação de conectores.',en:'Intelligent and sustainable charging ecosystem in keychain format, designed through Design Thinking to solve the fragmentation of connectors.'},
+   sobre:{pt:'Projeto de concepção e modelagem de produto desenvolvido através do framework de Design Thinking para solucionar o problema global de fragmentação, incompatibilidade e descarte de carregadores eletrônicos. Validado por dados de comportamento do usuário, o projeto unifica portabilidade extrema e engenharia sustentável para eliminar a dependência de múltiplos acessórios.',en:'Product conception and modeling project developed through the Design Thinking framework to solve the global problem of fragmentation, incompatibility, and disposal of electronic chargers. Validated by user behavior data, the project unifies extreme portability and sustainable engineering to eliminate dependence on multiple accessories.'},
+   solucao:{pt:'A resposta ao desafio materializou-se no Plugo, um chaveiro carregador universal e de alta potência equipado com adaptadores magnéticos embutidos e uma base de indução topo de linha. O diferencial ecológico reside na tecnologia Eco-Charge, que combina carregamento híbrido sinérgico (solar, cinético e sonoro) à mecânica inovadora de "conectar" múltiplos aparelhos físicos para somar suas potências elétricas. O ecossistema é integrado a um aplicativo com interface dinâmica de monitoramento e recursos de gamificação, incentivando hábitos saudáveis e transformando atividades físicas da rotina em energia limpa de carregamento.',en:'The response to the challenge materialized in Plugo, a universal and high-power charging keychain equipped with embedded magnetic adapters and a top-of-the-line induction base. The ecological differential lies in the Eco-Charge technology, which combines synergistic hybrid charging (solar, kinetic and acoustic) with the innovative "connect" mechanics of multiple physical devices to sum their electrical powers. The ecosystem is integrated with an app featuring a dynamic monitoring interface and gamification resources, encouraging healthy habits and transforming daily physical activities into clean charging energy.'},chips:['Design Thinking','Research','Hardware']},
+  {cat:'academico',date:'2025',
+   photos:[
+     'acad11.png',
+     'acad12.png',
+     'acad13.png',
+     'acad14.png',
+     'acad15.png'
+   ],
+   title:{pt:'Dashboard Pokémon: Engenharia e Análise de Dados',en:'Pokémon Dashboard: Data Engineering and Analysis'},
+   desc:{pt:'Solução end-to-end de Business Intelligence e engenharia de dados em SQL, consolidando métricas avançadas e análises de performance de 1215 registros.',en:'End-to-end solution of Business Intelligence and data engineering in SQL, consolidating advanced metrics and performance analyses of 1215 records.'},
+   sobre:{pt:'Desenvolvimento de um ecossistema completo de dados end-to-end voltado para o mapeamento, tratamento e modelagem preditiva de performance e características do universo Pokémon. O projeto prático transformou uma base massiva de dados brutos em uma infraestrutura analítica de alta performance para extração de padrões estratégicos.',en:'Development of a complete end-to-end data ecosystem focused on mapping, processing, and predictive modeling of performance and characteristics of the Pokémon universe. The practical project transformed a massive raw data set into a high-performance analytical infrastructure for extracting strategic patterns.'},
+   solucao:{pt:'A arquitetura da solução baseou-se na estruturação de um banco de dados relacional complexo em SQL, utilizando junções e filtros avançados para consolidar dados de 1215 espécies de forma otimizada. A partir dessa base tratada, foram modeladas métricas avançadas de Combat Power e correlações estatísticas entre atributos físicos e eficácia de combate em cenários competitivos. O ecossistema foi finalizado com a criação de dashboards interativos e segmentados no detalhe, empregando técnicas sofisticadas de Data Visualization (como mapas de calor e dispersão) para transformar dados complexos em tomadas de decisão visualmente intuitivas.',en:'The solution architecture was based on the structuring of a complex relational database in SQL, utilizing advanced joins and filters to consolidate data from 1215 species in an optimized manner. From this processed base, advanced metrics of Combat Power and statistical correlations between physical attributes and combat effectiveness in competitive scenarios were modeled. The ecosystem was finalized with the creation of interactive and segmented dashboards at the detail level, employing sophisticated Data Visualization techniques (such as heat maps and scatter plots) to transform complex data into visually intuitive decision-making tools.'},chips:['SQL','Power BI','Data Architecture']},
+  {cat:'academico',date:'2024',
+   photos:[
+     'acad16.png',
+     'acad17.png',
+     'acad18.png',
+     'acad19.png',
+     'acad20.png'
+   ],
+   title:{pt:'Vacinaê: Design Estratégico e Engajamento em Saúde Pública',en:'Vacinaê: Strategic Design and Engagement in Public Health'},
+   desc:{pt:'Solução de design estratégico e IA conversacional via WhatsApp para reverter o gap vacinal de jovens adultos em São Paulo através de automação e dados.',en:'Strategic design solution and conversational AI via WhatsApp to reverse the vaccination gap of young adults in São Paulo through automation and data.'},
+   sobre:{pt:'Pesquisa de imersão profunda e design conceitual focados no comportamento vacinal de jovens adultos (20 a 35 anos) na região metropolitana de São Paulo. O projeto aplicou metodologias de Design Estratégico para mapear os gatilhos de evasão vacinal, resultando em uma plataforma tecnológica voltada à saúde pública e ao engajamento social.',en:'Deep immersion research and conceptual design focused on the vaccination behavior of young adults (20 to 35 years old) in the metropolitan area of São Paulo. The project applied Strategic Design methodologies to map the triggers of vaccination evasion, resulting in a technological platform aimed at public health and social engagement.'},
+   solucao:{pt:'A infraestrutura proposta materializou-se no Vacinaê, um ecossistema que une análise de dados em saúde a uma camada de automação para disparos de campanhas altamente personalizadas. A interface principal utiliza o WhatsApp como canal de UX conversacional e autogestão, eliminando barreiras informacionais e simplificando o acompanhamento do calendário de imunização de forma intuitiva. A solução otimiza a comunicação pública, transformando o processo burocrático de vacinação em uma jornada digital fluida, interativa e de alta adesão para a nova geração.',en:'The proposed infrastructure materialized into Vacinaê, an ecosystem that combines health data analysis with an automation layer for highly personalized campaign launches. The main interface utilizes WhatsApp as a conversational UX and self-management channel, eliminating information barriers and simplifying the monitoring of vaccination schedules in an intuitive way. The solution optimizes public communication, transforming the bureaucratic vaccination process into a fluid, interactive, and highly adherent digital journey for the new generation.'},chips:['Research','Strategy','Healthcare']},
+  {cat:'academico',date:'2024',
+   photos:[
+     'acad21.png',
+     'acad22.png',
+     'acad23.png',
+     'acad24.png',
+     'acad25.png'
+   ],
+   title:{pt:'Motobase: Design de Serviço e Infraestrutura Humana para Delivery',en:'Motobase: Service Design and Human Infrastructure for Delivery'},
+   desc:{pt:'Hub físico e digital desenhado via design de serviço e etnografia para humanizar e otimizar a infraestrutura de trabalho dos entregadores de aplicativo.',en:'Physical and digital hub designed via service design and ethnography to humanize and optimize the work infrastructure of app delivery drivers.'},
+   sobre:{pt:'Projeto de inovação social e design etnográfico focado na reestruturação da jornada de trabalho de entregadores de aplicativos em grandes centros urbanos. Inspirado pela observação crítica de cenários de vulnerabilidade operacional, o case utilizou pesquisa de campo aprofundada para redesenhar a relação entre a economia de plataformas digitais e o bem-estar humano dos trabalhadores de ponta.',en:'Innovation and ethnographic design project focused on restructuring the work journey of app delivery drivers in large urban centers. Inspired by critical observation of operational vulnerability scenarios, the case used in-depth field research to redesign the relationship between the digital platform economy and the human well-being of frontline workers.'},
+   solucao:{pt:'A proposta de valor consolidou-se no desenvolvimento das Motobases, módulos urbanos de infraestrutura e descompressão estrategicamente localizados para oferecer suporte e dignidade à rotina dos entregadores. O ecossistema integra pontos de apoio físico para necessidades básicas (recarga, alimentação e descanso) com um modelo de negócios sustentável que reduz o desgaste físico dos profissionais e otimiza a eficiência do fluxo de entregas. A solução combina UX físico-digital de ponta para desburocratizar o dia a dia dessa população, transformando um cenário de alta fricção em um ecossistema de trabalho mais humano, produtivo e valorizado.',en:'The value proposition was consolidated in the development of Motobases, urban modules of infrastructure and strategic compression located to provide support and dignity to the routine of delivery drivers. The ecosystem integrates physical support points for basic needs (charging, food and rest) with a sustainable business model that reduces the physical wear of professionals and optimizes the efficiency of the delivery flow. The solution combines cutting-edge physical-digital UX to de-bureaucratize the daily life of this population, transforming a high-friction scenario into a more human, productive and valued work ecosystem.'},chips:['Design','Services','Delivery']},
+  {cat:'academico',date:'2026',
+   photos:[
+     'acad26.png',
+     'acad27.png',
+     'acad28.png'
+   ],
+   title:{pt:'Roadmap Estratégico de Transformação Digital',en:'Strategic Roadmap for Digital Transformation'},
+   desc:{pt:'Guia mestre de evolução corporativa estruturado em 6 estágios, integrando gestão de mudança e frameworks ágeis para governança e aceleração tecnológica.',en:'Guide of corporate evolution structured in 6 stages, integrating change management and agile frameworks for governance and technological acceleration.'},
+   sobre:{pt:'Desenvolvimento de um planejamento estratégico macro focado em guiar organizações na jornada de evolução tecnológica, processual e cultural. O projeto foi desenhado sob a perspectiva de que a transformação digital exige um diagnóstico de maturidade preciso e alinhamento do capital humano antes da execução técnica de novas ferramentas.',en:'Development of a macro strategic planning focused on guiding organizations in the journey of technological, procedural and cultural evolution. The project was designed from the perspective that digital transformation requires an accurate maturity diagnosis and alignment of human capital before the technical execution of new tools.'},
+   solucao:{pt:'A solução consistiu na criação de um framework metodológico escalável estruturado em seis estágios evolutivos, permitindo que as empresas façam uma transição previsível de um estado analógico inicial até a cultura de inovação sustentada. O modelo integra um diagnóstico de maturidade orientado a dados e uma estrutura robusta de governança para mitigar riscos de projeto e garantir controle de mudanças contínuas. Para sustentar a virada cultural, foi incorporada a metodologia dos 8 passos de John Kotter, neutralizando barreiras de resistência interna e transformando a estratégia corporativa em uma operação ágil, resiliente e focada em resultados de longo prazo.',en:'The solution consisted of creating a scalable methodological framework structured in six evolutionary stages, allowing companies to make a predictable transition from an initial analog state to a sustainable innovation culture. The model integrates a data-driven maturity diagnosis and a robust governance structure to mitigate project risks and ensure continuous change control. To support the cultural shift, the methodology of John Kotter\'s 8 steps was incorporated, neutralizing internal resistance barriers and transforming corporate strategy into an agile, resilient and long-term results-focused operation.'},chips:['Governance','Operations','Strategy']},
+  {cat:'academico',date:'2026',
+   photos:[
+     'acad29.png'
+   ],
+   title:{pt:'Gestão de Escopo de Crise: Retrofit da UHE Monte Claro',en:'Crisis Scope Management: Retrofit of UHE Monte Claro'},
+   desc:{pt:'Planejamento estratégico de escopo de engenharia e contingência focado no retrofit e reestabelecimento operacional da UHE Monte Claro pós-desastre climático no RS.',en:'Strategic planning of engineering scope and contingency focused on retrofitting and operational re-establishment of UHE Monte Claro after climate disaster in RS.'},
+   sobre:{pt:'Planejamento mestre e estruturação de escopo para a recuperação emergencial da Casa de Força da Usina Hidrelétrica Monte Claro após as enchentes históricas do Rio Grande do Sul. O projeto aplicou as melhores práticas de gerenciamento de escopo e riscos em um cenário de altíssima complexidade técnica, restrições regulatórias severas e tempo-resposta crítico.',en:'Planning master and scope structuring for the emergency recovery of the Powerhouse of the Monte Claro Hydroelectric Plant after the historic floods in Rio Grande do Sul. The project applied best practices in scope and risk management in a scenario of extremely high technical complexity, severe regulatory constraints, and critical response time.'},
+   solucao:{pt:'A resposta à crise consolidou-se em um plano de escopo integrado projetado para reestabelecer as operações de automação e infraestrutura elétrica da usina no prazo de 5 meses. A solução envolveu a modelagem do Termo de Abertura com mapeamento de múltiplos stakeholders regulatórios (como ANEEL e operadoras) e a quebra minuciosa das entregas via Estrutura Analítica do Projeto (EAP/WBS) e seu respectivo Dicionário, detalhando desde a limpeza técnica especializada até a programação de sistemas de controle SCADA de alta complexidade. O framework de governança foi blindado por um Plano de Gestão de Riscos agressivo focado em contingência logística e climática, com critérios de sucesso validados formalmente sob rígidas normas de segurança de engenharia (NR10 e NBR 5410).',en:'The solution consisted of creating a scalable methodological framework structured in six evolutionary stages, allowing companies to make a predictable transition from an initial analog state to a sustainable innovation culture. The model integrates a data-driven maturity diagnosis and a robust governance structure to mitigate project risks and ensure continuous change control. To support the cultural shift, the methodology of John Kotter\'s 8 steps was incorporated, neutralizing internal resistance barriers and transforming corporate strategy into an agile, resilient and long-term results-focused operation.'},chips:['WBS','Scope','Roadmap']},
+  {cat:'academico',date:'2022',
+   photos:[
+     'acad30.png',
+     'acad31.png',
+     'acad32.png',
+     'acad33.png'
+   ],
+   title:{pt:'MOBU: Customer Experience e Inteligência em Mobilidade Urbana',en:'MOBU: Customer Experience and Intelligence in Urban Mobility'},
+   desc:{pt:'Aplicativo de mobilidade urbana e inteligência de dados que funciona como assistente de viagens intermunicipal, unindo métricas de rotas e comunidade de viajantes.',en:'Mobility app and data intelligence that functions as an intercity travel assistant, uniting route metrics and a community of travelers.'},
+   sobre:{pt:'Concepção e mapeamento de experiência do cliente (CX) focado na jornada de viajantes intermunicipais no território nacional brasileiro. O projeto foi estruturado sob as óticas de usabilidade e centralidade no usuário (customer-centricity) para solucionar gargalos de informação, previsibilidade e segurança que impactam o deslocamento de pessoas entre cidades.',en:'Conception and customer experience mapping focused on the journey of intercity travelers in the Brazilian national territory. The project was structured under the perspectives of usability and user-centricity to solve information, predictability, and safety bottlenecks that impact the movement of people between cities.'},
+   solucao:{pt:'A infraestrutura da solução materializou-se no MOBU, um aplicativo assistente virtual projetado para atuar como um guia preditivo de ponta a ponta durante as rotas do viajante. A plataforma unifica em uma interface fluida a exibição de métricas avançadas de tempo e eficiência por modal de transporte, painéis de avaliação de deslocamentos e um ecossistema de rede colaborativa. Esse hub de comunidade permite que os próprios usuários alimentem a base com avaliações em tempo real e recomendações estratégicas locais, otimizando a tomada de decisão no trânsito e transformando o deslocamento tradicional em uma experiência fluida, segura e humanizada.',en:'The solution consisted of creating a scalable methodological framework structured in six evolutionary stages, allowing companies to make a predictable transition from an initial analog state to a sustainable innovation culture. The model integrates a data-driven maturity diagnosis and a robust governance structure to mitigate project risks and ensure continuous change control. To support the cultural shift, the methodology of John Kotter\'s 8 steps was incorporated, neutralizing internal resistance barriers and transforming corporate strategy into an agile, resilient and long-term results-focused operation.'},chips:['CX','Design Thinking','Digital']},
+  {cat:'academico',date:'2021',
+   photos:[
+     'acad34.png',
+     'acad35.png',
+     'acad36.png',
+     'acad37.png',
+     'acad38.png'
+   ],
+   title:{pt:'ODS 10: Design Thinking e Inovação para Inclusão e Impacto Social',en:'ODS 10: Design Thinking and Innovation for Inclusion and Social Impact'},
+   desc:{pt:'Hub social e ecossistema seguro voltado à inclusão socioeconômica e redução de desigualdades estruturais para a população trans, travesti e não-binária no Brasil.',en:'Social hub and safe ecosystem aimed at socioeconomic inclusion and reduction of structural inequalities for the'},
+   sobre:{pt:'Projeto de inovação de impacto e design etnográfico focado no desenvolvimento de soluções para os Objetivos de Desenvolvimento Sustentável (ODS 10) da ONU, voltado à redução de desigualdades. O case aplicou metodologias ágeis de Design Thinking para fazer uma imersão profunda no ecossistema brasileiro e desenhar um modelo focado na segurança e inclusão da população trans, travesti e não-binária.',en:'Impact innovation and ethnographic design project focused on developing solutions for the UN Sustainable Development Goals (SDG 10), aimed at reducing inequalities. The case applied agile Design Thinking methodologies to make a deep immersion in the Brazilian ecosystem and design a model focused on the safety and inclusion'},
+   solucao:{pt:'A infraestrutura estratégica consolidou-se em um ecossistema digital seguro desenhado para atuar como rede de apoio, capacitação e conexões para a comunidade e redes aliadas. A plataforma utiliza um motor de recomendação inteligente que conecta perfis com base em interesses, facilitando o compartilhamento de vivências, vagas de emprego inclusivas e o mapeamento georreferenciado de locais acolhedores de serviços. O principal diferencial reside na camada robusta de moderação, governança de dados e monitoramento contínuo, blindando o ecossistema para garantir um ambiente digital com alto nível de respeito, segurança psicológica e fomento à empregabilidade.',en:'The solution consisted of creating a scalable methodological framework structured in six evolutionary stages, allowing companies to make a predictable transition from an initial analog state to a sustainable innovation culture. The model integrates a data-driven maturity diagnosis and a robust governance structure to mitigate project risks and ensure continuous change control. To support the cultural shift, the methodology of John Kotter\'s 8 steps was incorporated, neutralizing internal resistance barriers and transforming corporate strategy into an agile, resilient and long-term results-focused operation.'},chips:['Research','Ethics','UX']},
+];
+
+// track per-modal carousel state
+let modalCarouselIdx = 0;
+let modalCarouselTotal = 0;
+
+function renderProjects(filter){
+  const grid=document.getElementById('projectsGrid');
+  const list=filter==='all'?projects:projects.filter(p=>p.cat===filter);
+  grid.innerHTML=list.map(p=>{
+    const gi=projects.indexOf(p);
+    const tl=p.cat==='profissional'?(lang==='pt'?'💼 Profissional':'💼 Professional'):(lang==='pt'?'🎓 Acadêmico':'🎓 Academic');
+    return `<div class="project-card cat-${p.cat}" onclick="openModal(${gi})">
+      <div class="project-tag ${p.cat==='profissional'?'tag-prof':'tag-acad'}">${tl}</div>
+      <div class="project-title">${p.title[lang]}</div>
+      <div class="project-desc">${p.desc[lang]}</div>
+      <div class="project-footer">${p.chips.map(c=>`<span class="project-chip">${c}</span>`).join('')}</div>
+    </div>`;
+  }).join('');
+}
+
+function filterProjects(f,btn){
+  currentFilter=f;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  updateFilterBtns();
+  renderProjects(f);
+}
+
+/* ── MODAL ── */
+function buildPhotoArea(p){
+  const isPro = p.cat==='profissional';
+  const photos = p.photos||[];
+  if(isPro){
+    // single photo
+    if(photos.length){
+      return `<div class="modal-photo-area">
+        <img class="modal-photo-single" src="${photos[0]}" alt="Foto do projeto" loading="lazy" onerror="this.parentElement.innerHTML='<div class=modal-photo-placeholder><span>🖼️</span><span>${lang==='pt'?'Adicione uma foto do projeto':'Add a project photo'}</span></div>'"/>
+      </div>`;
+    }
+    return `<div class="modal-photo-area"><div class="modal-photo-placeholder"><span>🖼️</span><span>${lang==='pt'?'Adicione uma foto do projeto':'Add a project photo'}</span></div></div>`;
+  } else {
+    // carousel of 5
+    modalCarouselIdx=0;
+    modalCarouselTotal=photos.length||5;
+    const slides = photos.length
+      ? photos.map((src,i)=>`<div class="modal-carousel-slide"><img src="${src}" alt="Foto ${i+1}" loading="lazy" onerror="this.parentElement.innerHTML='<span>🖼️</span><span>${lang==='pt'?'Foto '+(i+1):'Photo '+(i+1)}</span>'"/></div>`)
+      : Array.from({length:5},(_,i)=>`<div class="modal-carousel-slide"><span>&#x1F5BC;&#xFE0F;</span><span>${lang==='pt'?'Foto '+(i+1):'Photo '+(i+1)}</span></div>`);
+    const dotsHtml = slides.map((_,i)=>`<button class="modal-carousel-dot${i===0?' active':''}" onclick="goModalCarousel(${i})"></button>`).join('');
+    return `<div class="modal-photo-area">
+      <div class="modal-carousel">
+        <div class="modal-carousel-track" id="mcTrack">${slides.join('')}</div>
+        <button class="modal-carousel-btn prev" onclick="shiftModalCarousel(-1)">‹</button>
+        <button class="modal-carousel-btn next" onclick="shiftModalCarousel(1)">›</button>
+        <div class="modal-carousel-dots" id="mcDots">${dotsHtml}</div>
+      </div>
+    </div>`;
+  }
+}
+
+function goModalCarousel(i){
+  modalCarouselIdx=i;
+  const track=document.getElementById('mcTrack');
+  if(track) track.style.transform=`translateX(-${i*100}%)`;
+  document.querySelectorAll('.modal-carousel-dot').forEach((d,j)=>d.classList.toggle('active',j===i));
+}
+
+function shiftModalCarousel(dir){
+  goModalCarousel((modalCarouselIdx+dir+modalCarouselTotal)%modalCarouselTotal);
+}
+
+function openModal(idx){
+  const p=projects[idx];
+  const isPro=p.cat==='profissional';
+  const catLabel=isPro?(lang==='pt'?'💼 Profissional':'💼 Professional'):(lang==='pt'?'🎓 Acadêmico':'🎓 Academic');
+  const catCls=isPro?'tag-prof':'tag-acad';
+  let extra='';
+  if(!isPro&&p.solucao) extra=`<div class="modal-section"><h4>${lang==='pt'?'Solução':'Solution'}</h4><p>${p.solucao[lang]}</p></div>`;
+  if(isPro&&p.midia) extra=`<div class="modal-section"><h4>${lang==='pt'?'Projeto na mídia':'Media coverage'}</h4><a class="modal-link" href="${p.midia.url}" target="_blank">↗ ${p.midia.label}</a></div>`;
+
+  document.getElementById('modalContent').innerHTML=`
+    ${buildPhotoArea(p)}
+    <div class="modal-body">
+      <div class="modal-cat ${catCls}">${catLabel}</div>
+      <div class="modal-title">${p.title[lang]}</div>
+      <div class="modal-date">📅 ${p.date}</div>
+      <div class="modal-section"><h4>${lang==='pt'?'Sobre o projeto':'About the project'}</h4><p>${p.sobre[lang]}</p></div>
+      <div class="modal-section"><h4>${lang==='pt'?'Skills utilizadas':'Skills used'}</h4><div class="modal-chips">${p.chips.map(c=>`<span class="modal-chip">${c}</span>`).join('')}</div></div>
+      ${extra}
+    </div>`;
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){document.getElementById('modalOverlay').classList.remove('open');document.body.style.overflow='';}
+function closeModalOutside(e){if(e.target===document.getElementById('modalOverlay'))closeModal();}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+
+/* ── RECS ── */
+const recs=[
+  {initials:'RM',color:'#4f46e5',quote:{pt:'Competente e estratégica, que une foco em resultados, postura colaborativa e uma comunicação clara que eleva o padrão do ambiente de trabalho.',en:'Results-driven and strategic professional with a collaborative approach and strong communication skills that elevate the workplace standard'},name:'Rebeca Mak',role:{pt:'Analista de Qualidade',en:'Quality Analyst'}},
+  {initials:'CC',color:'#06b6d4',quote:{pt:'Profissional extraordinária, com uma habilidade de organização impressionante que garante projetos entregues no prazo, resultados de excelência e clientes encantados.',en:'Extraordinary professional with outstanding organizational abilities, consistently delivering projects on time, achieving excellent results, and ensuring client delight.'},name:'Caio Canoas',role:{pt:'Data Architect & Business Intelligence',en:'Data Architect & Business Intelligence'}},
+  {initials:'NA',color:'#f59e0b',quote:{pt:'Profissional de talento excepcional que vai além da gestão de projetos: entrega alta qualidade com consistência, domínio técnico, transparência e grande habilidade em gestão de crise.',en:'Exceptionally talented professional who exceeds traditional project management, consistently delivering high-quality results through technical mastery, transparency, and strong crisis management abilities.'},name:'Nicholas Andrade',role:{pt:'Product Designer',en:'Product Designer'}},
+  {initials:'GC',color:'#ec4899',quote:{pt:'Habilidade excepcional de gerenciar atividades com maestria: mantém a calma e a eficiência mesmo diante de prazos apertados e desafios complexos, garantindo entregas com excelência.',en:'Exceptional ability to masterfully manage tasks, maintaining calm and efficiency even under tight deadlines and complex challenges to ensure high-quality delivery.'},name:'Guilherme Cano',role:{pt:'Project Manager',en:'Project Manager'}},
+  {initials:'AC',color:'#10b981',quote:{pt:'Comprometimento inspirador com o sucesso coletivo, aliando uma ética de trabalho exemplar, postura extremamente colaborativa e foco em garantir a excelência nas entregas.',en:'An inspiring commitment to collective success, combining an exemplary work ethic, a highly collaborative approach, and a steadfast focus on ensuring excellence in execution.'},name:'Anna Clara',role:{pt:'Marketing & Partner Relations',en:'Marketing & Partner Relations'}},
+  {initials:'GH',color:'#8b5cf6',quote:{pt:'Sua liderança e organização excepcionais transformam o gerenciamento de projetos complexos em algo rotineiro, entregando sempre resultados de alta qualidade no prazo.',en:"Outstanding leadership and structural organization that turn complex project management into a predictable everyday process, always ensuring on-time delivery of high-quality results."},name:'Gabriel Hirayama',role:{pt:'Senior Leader',en:'Senior Leader'}},
+  {initials:'AK',color:'#ef4444',quote:{pt:'Demonstra uma criatividade sem limites e visão de crescimento excepcional, constantemente trazendo soluções originais e fora da caixa para elevar os projetos a novos patamares.',en:'Driven by boundless creativity and a remarkable growth vision, consistently delivering innovative, out-of-the-box solutions that scale projects to the next level.'},name:'Akemi Kamiya',role:{pt:'AI & Automation Specialist',en:'AI & Automation Specialist'}},
+  {initials:'MV',color:'#0ea5e9',quote:{pt:'Capacidade de liderança notável com entrega consistente de alta qualidade, transmitindo tranquilidade e transparência para criar um ambiente positivo e produtivo.',en:'Remarkable leadership capability with a consistent delivery of high quality, fostering tranquility and transparency to create a positive and productive environment.'},name:'Maria Vitória Tozello',role:{pt:'Sr. UX Writer',en:'Sr. UX Writer'}},
+];
+
+let recIdx=0, recTimer, totalSlides=0;
+
+function buildRecs(){
+  const track=document.getElementById('recsTrack');
+  const dots=document.getElementById('recsDots');
+  const slides=[];
+  for(let i=0;i<recs.length;i+=2) slides.push(recs.slice(i,i+2));
+  totalSlides=slides.length;
+  track.innerHTML=slides.map(pair=>`
+    <div class="recs-slide">
+      ${pair.map(r=>`<div class="rec-card">
+        <p class="rec-quote">${r.quote[lang]}</p>
+        <div class="rec-author">
+          <div class="rec-avatar" style="background:${r.color}">${r.initials}</div>
+          <div><span class="rec-name">${r.name}</span><span class="rec-role">${r.role[lang]}</span></div>
+        </div>
+      </div>`).join('')}
+    </div>`).join('');
+  dots.innerHTML=slides.map((_,i)=>`<button class="recs-dot${i===recIdx?' active':''}" onclick="goRec(${i})"></button>`).join('');
+  track.style.transform=`translateX(-${recIdx*100}%)`;
+}
+
+function goRec(i){
+  recIdx=i;
+  document.getElementById('recsTrack').style.transform=`translateX(-${i*100}%)`;
+  document.querySelectorAll('.recs-dot').forEach((d,j)=>d.classList.toggle('active',j===i));
+  resetTimer();
+}
+function nextRec(){goRec((recIdx+1)%totalSlides);}
+function resetTimer(){clearInterval(recTimer);recTimer=setInterval(nextRec,4500);}
+
+/* ── LANG ── */
+function toggleLang(){
+  lang=lang==='pt'?'en':'pt';
+  document.getElementById('langBtn').textContent=lang==='pt'?'EN':'PT';
+  document.documentElement.lang=lang==='pt'?'pt-BR':'en-US';
+  document.querySelectorAll('[data-pt]').forEach(el=>el.textContent=el.dataset[lang]);
+  renderProjects(currentFilter);
+  updateFilterBtns();
+  buildRecs(); resetTimer();
+}
+function updateFilterBtns(){
+  const labels=lang==='pt'?['Todos (20)','Profissionais (11)','Acadêmicos (9)']:['All (20)','Professional (11)','Academic (9)'];
+  document.querySelectorAll('.filter-btn').forEach((b,i)=>b.textContent=labels[i]);
+  const idx=['all','profissional','academico'].indexOf(currentFilter);
+  document.querySelector('.filter-btn.active').textContent=labels[idx];
+}
+
+renderProjects('all');
+buildRecs();
+resetTimer();
+</script>
+</body>
+</html>
